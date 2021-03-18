@@ -1,4 +1,85 @@
-.App {
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap');
+
+/* Global Styles */
+
+:root {
+  --primary-color: #6D6875;
+  --secondary-color: #B5838D;
+  --medium-color: #E5989B;
+  /* --dark-color: #6D6875; */
+  --light-color: #FFCDB2;
+  --bg-color: #FFB4A2;
+  --danger-color: #3b3b3b;
+  --info-color: #feea88;
+  --success-color: #9fedd7;
+  --badge-color: #f18484;
+  }
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0 auto;
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  height: 8vh;
+  background-color: var(--primary-color);
+  color: #fff;
+  align-items: center;
+  padding: 1rem;
+  /* font-weight: 300; */
+  opacity: 0.9;
+  margin-bottom: 1rem;
+}
+
+p, h1, h2, h3 {
+  line-height: 1.5em;
+  word-spacing: 0.1em;
+}
+
+nav ul {
+  display: flex;
+}
+
+.bg-badge {
+  background-color: var(--badge-color);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+
+nav a {
+  color: #fff;
+  padding: 0.45rem;
+  margin: 0 0.25rem;
+}
+
+.container {
+  padding: 0 1rem;
+  max-width: 1100px;
+  margin: auto;
+  overflow: hidden;
+}
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +116,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
