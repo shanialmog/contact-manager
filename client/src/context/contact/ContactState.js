@@ -20,6 +20,7 @@ const ContactState = (props) => {
                 name: 'Abraham Abe',
                 email: 'abe@gmail.com',
                 phone: '111-111-111',
+                img: 'https://www.clipartmax.com/png/middle/25-253041_abraham-lincoln-former-paralegal-cartoon.png',
                 type: 'personal'
             },
             {
@@ -27,6 +28,7 @@ const ContactState = (props) => {
                 name: 'Berry Ber',
                 email: 'Ber@gmail.com',
                 phone: '222-222-222',
+                img: 'https://i.pinimg.com/736x/81/b5/fe/81b5feba274871b01edfbb07f0d59af6.jpg',
                 type: 'personal'
             },
             {
@@ -34,7 +36,8 @@ const ContactState = (props) => {
                 name: 'Cindy Ci',
                 email: 'ci@gmail.com',
                 phone: '333-33-333',
-                type: 'Professional'
+                img: 'https://i.pinimg.com/originals/eb/55/f9/eb55f9e8e1a861c234990090afd89fd8.jpg',
+                type: 'professional'
             }
         ]
     }
@@ -58,7 +61,7 @@ const ContactState = (props) => {
     return (
         <ContactContext.Provider
             value={{
-                contact: state.contacts
+                contacts: state.contacts
             }}
         >
             {props.children}

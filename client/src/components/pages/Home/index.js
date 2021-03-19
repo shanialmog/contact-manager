@@ -1,8 +1,14 @@
+import Contacts from '../../contacts/Contacts'
 
 const Home = () => {
     return (
-        <div>
-            Homeee
+        <div className="grid-2">
+            <div>
+
+            </div>
+            <div>
+                <Contacts />
+            </div>
         </div>
     )
 }
