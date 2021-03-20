@@ -33,7 +33,7 @@ const ContactState = (props) => {
             },
             {
                 id: 3,
-                name: 'Cindy Ci',
+                name: 'Cindy Ci Centimfloids Von Crease',
                 email: 'ci@gmail.com',
                 phone: '333-33-333',
                 img: 'https://i.pinimg.com/originals/eb/55/f9/eb55f9e8e1a861c234990090afd89fd8.jpg',

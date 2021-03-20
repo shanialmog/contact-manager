@@ -8,11 +8,12 @@
   --medium-color: #E5989B;
   --dark-color: #404c91;
   --light-color: #FFCDB2;
+  --neutral-color: #606060;
   --bg-color: #FFB4A2;
-  --danger-color: #3b3b3b;
+  --danger-color: #e21c1ca6;
   --info-color: #feea88;
-  --success-color: #9fedd7;
-  --badge-color: #f18484;
+  --success-color: #1c54e2a6;
+  --badge-color: #874091;
   }
 
 * {
@@ -83,6 +84,7 @@ nav a {
   max-width: 1100px;
   margin: auto;
   overflow: hidden;
+  /* background-color: #f4f8fb; */
 }
 
 .margin-1 {
@@ -98,21 +100,13 @@ nav a {
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 1rem;
 }
-/* 
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  /* min-height: 100vh; 
-}
-*/
 
 .contact-card {
   box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
   border-radius: 4px;
   margin: 1em;
-  max-width: 20em;
+  max-width: 30em;
+  overflow: hidden;
 }
 
 .contact-card-title {
@@ -120,9 +114,10 @@ nav a {
   display: flex;
   align-items: center;
   overflow: hidden;
+  max-height: 4em;
 
-  opacity: 1;
-  transition-duration: 0.25s;
+  /* opacity: 1;
+  transition-duration: 0.25s; */
 }
 
 .contact-img {
@@ -132,12 +127,12 @@ nav a {
 }
 
 .badge {
-  margin: 1em;
   padding: 0.5em;
   display: inline-block;
   font-size: 0.8em;
   color: #fff;
   border-radius: 3px;
+  margin-right: 0.2em;
   margin-left: auto;
 }
 
@@ -146,24 +141,83 @@ nav a {
 }
 
 .badge-personal {
-  background-color: var(--medium-color);
+  background-color: var(--badge-color);
 }
 
 .contact-name {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-size: 1rem;
   font-weight: 500;
   margin: 1em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 10em;
 }
-
-/* .contact-card > i {
-  width: 0.5em;
-  padding: 0.5em;
-  margin: 0.5em;
-} */
 
 .fa-stack:hover .icon-bg {
   color: rgba(0, 0, 0, 0.04);
+}
+
+.contact-card-open {
+  margin: 1em;
+  max-height: 6em;
+}
+
+.contact-card-open ul{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 3em;
+}
+
+.contact-card-open i {
+  color:#4e4e4e;
+}
+
+.contact-card-open p {
+  margin-top: 0.5em;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn {
+  margin-left: 0.5em;
+  color: #fff;
+  background-color: var(--neutral-color);
+  padding: 0.9em 1.2em;
+  font-size: 0.8rem;
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.1em;
+  border-radius: 2px;
+  cursor: pointer;
+  opacity: 0.9;
+  border: none;
+  outline: none;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.btn:hover {
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
+  opacity: 1;
+}
+
+.btn:active {
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+  opacity: 1;
+}
+
+.btn-success {
+  background-color: var(--success-color);
+  color: #fff;
+}
+
+.btn-danger {
+  background-color: var(--danger-color);
+  color: #fff;
+}
+
+.contact-card-open p i {
+  color:#fff;
 }
 /* .App {
   text-align: center;
