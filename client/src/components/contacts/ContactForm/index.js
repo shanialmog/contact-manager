@@ -17,7 +17,7 @@ const ContactForm = () => {
     }
 
     return (
-        <form>
+        <form className="add-contact-form">
             <h2>Add Contact</h2>
             <input
                 type='text'
@@ -48,12 +48,14 @@ const ContactForm = () => {
                 onChange={onChange}
             />
             <h5>Contact Type</h5>
-            <input type='radio' name='type' value='personal' checked={type === 'personal'}
-            /> Personal{' '}
-            <input type='radio' name='type' value='professional' checked={type === 'professional'}
-            /> Professional{' '}
             <div>
-                <input className="btn btn-success" type='submit' value='ADD CONTACT'/>
+                <input type='radio' name='type' value='personal' checked={type === 'personal'}
+                /> Personal{' '}
+                <input type='radio' name='type' value='professional' checked={type === 'professional'}
+                /> Professional{' '}
+            </div>
+            <div>
+                <input className="btn btn-success" type='submit' value='ADD CONTACT' />
             </div>
         </form>
     )

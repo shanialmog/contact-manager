@@ -1,14 +1,15 @@
 import Contacts from '../../contacts/Contacts'
-import ContactForm from '../../contacts/ContactForm'
+import { Link } from 'react-router-dom'
 
 const Home = () => {
     return (
-        <div className="grid-2">
-            <div>
-                <ContactForm />
-            </div>
+        // <div className="grid-2">
+        <div>
             <div>
                 <Contacts />
+            </div>
+            <div >
+                <Link to="/add-contact" className="add-contact-btn btn"><i className="fal fa-plus" /> ADD CONTACT</Link>
             </div>
         </div>
     )
