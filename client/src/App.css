@@ -32,6 +32,10 @@ h1 {
   font-size: 1.2rem;
 }
 
+.about-cont h1 {
+  font-size: 2rem;
+}
+
 h2 {
   font-weight: 400;
 }
@@ -106,7 +110,7 @@ nav a {
 
 .contact-card {
   box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
-  border-radius: 4px;
+  border-radius: 5px;
   margin: 1em;
   max-width: 30em;
   overflow: hidden;
@@ -118,14 +122,12 @@ nav a {
   align-items: center;
   overflow: hidden;
   max-height: 4em;
-
-  /* opacity: 1;
-  transition-duration: 0.25s; */
+  transition-duration: 0.25s;
 }
 
 .contact-img {
-  height: 4em;
-  width:  4em;
+  height: 5em;
+  width:  5em;
   object-fit: cover;
 }
 
@@ -154,7 +156,7 @@ nav a {
   margin: 1em;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 10em;
+  max-width: 14em;
 }
 
 .fa-stack:hover .icon-bg {
@@ -196,6 +198,7 @@ nav a {
   opacity: 0.9;
   border: none;
   outline: none;
+  letter-spacing: 0.03em;
   box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
 
@@ -212,6 +215,10 @@ nav a {
 .btn-success {
   background-color: var(--success-color);
   color: #fff;
+}
+
+input[type=submit]{
+  padding: 1em 3em;
 }
 
 .btn-danger {
@@ -240,23 +247,56 @@ nav a {
   margin: auto;
   width: 30em;
   box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
+  height: 35em;
+  justify-content: space-between;
 }
 
 .add-contact-form h2 {
-  margin-bottom: 1em;
   text-align: center;
 }
 
-/* .add-contact-form .add-contact-btn {
+.center {
   text-align: center;
-} */
+}
 
-.add-contact-form > input {
-  margin-bottom: 1em;
-  padding: 1em;
+.form-group > input {
+  padding: 0.5em 1em 0.5em 0;
+  font-size: 1rem;
   max-width: 30em;
   width: 100%;
+  border:none;
+  border-bottom: 1px solid #cacaca;
+  outline: none;
+  font-weight: 300;
+  font-family: inherit;
 }
+
+input[type=text]:focus, input[type=email]:focus, input[type=tel]:focus, input[type=url]:focus {
+  border-bottom: 1px solid var(--dark-color);
+}
+
+.control-label {
+  font-size: 1.1em;
+}
+
+.form-control-radio {
+  margin: 1.5em 0;
+  font-weight: 300;
+}
+
+/* .form-control-radio input[type="radio"]:last-child {
+  margin-right: 1em;
+} */
+
+input[type="radio"]:last-child{
+  margin: 0 0 0 1em;
+}
+
+.form-group-radio {
+  margin: 0.5em 0 0.5em 0;
+}
+
+
 /* .App {
   text-align: center;
 }

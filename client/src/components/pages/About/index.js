@@ -1,7 +1,7 @@
 
 const About = () => {
     return (
-        <div>
+        <div className="about-cont center">
             <h1> About This App</h1>
             <p className="margin-1">
                 This is a full stack React app for managing contacts
