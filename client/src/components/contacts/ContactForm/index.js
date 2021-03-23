@@ -1,6 +1,11 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import ContactContext from '../../../context/contact/contactContext'
+import { Redirect } from 'react-router-dom'
 
 const ContactForm = () => {
+    const contactContext = useContext(ContactContext)
+
+
     const [contact, setContact] = useState({
         name: '',
         email: '',
@@ -8,6 +13,7 @@ const ContactForm = () => {
         img: '',
         type: 'personal'
     })
+    const [fireRedirect, setRedirect] = useState(false)
 
     const { name, email, phone, img, type } = contact
 
@@ -16,12 +22,35 @@ const ContactForm = () => {
         setContact({ ...contact, [name]: value })
     }
 
+    const onSubmit = (e) => {
+        e.preventDefault()
+        if (contact.img == '') {
+            contactContext.addContact({
+                ...contact,
+                img: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'
+            })
+        } else {
+            contactContext.addContact(contact)
+        }
+        setContact({
+            name: '',
+            email: '',
+            phone: '',
+            img: '',
+            type: 'personal'
+        })
+        setRedirect(true)
+    }
+
+    const submitDisabled = (contact.name.length > 0 && contact.email.length > 0 && (contact.phone.length > 0 && contact.phone.match("[0-9\-\.\+]+"))) ? false : true
+
     return (
-        <form className="add-contact-form">
+        <form onSubmit={onSubmit} className="add-contact-form">
             <h2>Add Contact</h2>
             <div className="form-group">
-                <label for="name" class="control-label">Name</label>
+                <label htmlFor="name" className="control-label">Name</label>
                 <input
+                    required
                     type="text"
                     name="name"
                     value={name}
@@ -30,8 +59,9 @@ const ContactForm = () => {
                 />
             </div>
             <div className="form-group">
-                <label for="email" class="control-label">Email</label>
+                <label htmlFor="email" className="control-label">Email</label>
                 <input
+                    required
                     type="email"
                     name="email"
                     value={email}
@@ -40,45 +70,51 @@ const ContactForm = () => {
                 />
             </div>
             <div className="form-group">
-                <label for="phone" class="control-label">Phone</label>
+                <label htmlFor="phone" className="control-label">Phone</label>
                 <input
+                    required
                     type="tel"
                     name="phone"
                     value={phone}
                     onChange={onChange}
-                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                    pattern="[0-9\-\.\+]+"
                     className="form-control"
                 />
             </div>
             <div className="form-group">
-                <label for="url" class="control-label">Image URL</label>
+                <label htmlFor="url" className="control-label">Image URL</label>
                 <input
                     type="url"
                     name="img"
                     value={img}
                     onChange={onChange}
                     className="form-control"
-                    />
+                />
             </div>
             <div className="form-group-radio">
-                <label for="type" class="control-label">Contact Type</label>
+                <label htmlFor="type" className="control-label">Contact Type</label>
                 <div className="form-control-radio">
                     <input
                         type="radio"
                         name="type"
                         value="personal"
                         checked={type === "personal"}
-                        /> Personal{" "}
+                        onChange={onChange}
+                    /> Personal{" "}
                     <input
                         type="radio"
                         name="type"
                         value="professional"
                         checked={type === "professional"}
-                        /> Professional{" "}
+                        onChange={onChange}
+                    /> Professional{" "}
                 </div>
             </div>
             <div className="center">
-                <input className="btn btn-success" type='submit' value="SUBMIT" />
+                <input className="btn btn-success" type='submit' value="SUBMIT" disabled={submitDisabled} />
+                {fireRedirect && (
+                    <Redirect to="/" />
+                )}
             </div>
         </form>
     )
