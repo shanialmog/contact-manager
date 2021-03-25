@@ -48,7 +48,7 @@ const ContactForm = () => {
         <form onSubmit={onSubmit} className="add-contact-form">
             <h2>Add Contact</h2>
             <div className="form-group">
-                <label htmlFor="name" className="control-label">Name</label>
+                <label htmlFor="name" className="control-label required">Name</label>
                 <input
                     required
                     type="text"
@@ -59,7 +59,7 @@ const ContactForm = () => {
                 />
             </div>
             <div className="form-group">
-                <label htmlFor="email" className="control-label">Email</label>
+                <label htmlFor="email" className="control-label required">Email</label>
                 <input
                     required
                     type="email"
@@ -70,7 +70,7 @@ const ContactForm = () => {
                 />
             </div>
             <div className="form-group">
-                <label htmlFor="phone" className="control-label">Phone</label>
+                <label htmlFor="phone" className="control-label required">Phone</label>
                 <input
                     required
                     type="tel"
