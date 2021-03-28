@@ -1,7 +1,12 @@
 import { Fragment, useContext, useState } from 'react'
 import PropTypes from 'prop-types'
 
+import ContactContext from '../../../context/contact/contactContext'
+
 const ContactItem = ({ contact }) => {
+    const contactContext = useContext(ContactContext)
+    const { deleteContact } = contactContext
+
     const [isOpen, setIsOpen] = useState(false)
     const [edit, setEdit] = useState(false)
 
@@ -17,6 +22,11 @@ const ContactItem = ({ contact }) => {
 
     const isCancel = () => {
         setEdit(false)
+    }
+
+    const onDelete = () => {
+        console.log("delete")
+        deleteContact(id)
     }
 
     return (
@@ -68,7 +78,7 @@ const ContactItem = ({ contact }) => {
                                 ?
                                 (
                                     <Fragment>
-                                        <button className="btn btn-danger"><i className="fal fa-trash-alt" /> DELETE</button>
+                                        <button className="btn btn-danger" onClick={onDelete}><i className="fal fa-trash-alt" /> DELETE</button>
                                         <button className="btn" onClick={isCancel}><i className="fal fa-times-circle" /> CANCEL</button>
                                     </Fragment>
                                 )
