@@ -6,9 +6,9 @@ const About = () => {
             <p className="margin-1">
                 This is a full stack React app for managing contacts
             </p>
-            <text className='padding-1 bg-badge'>
+            <span className='padding-1 bg-badge'>
                 <strong>Version</strong> 1.0.0
-            </text>
+            </span>
         </div>
     )
 }

@@ -1,10 +1,25 @@
-import { useContext, useState } from 'react'
+import { useContext, useState, useEffect, Fragment } from 'react'
 import ContactContext from '../../../context/contact/contactContext'
 import { Redirect } from 'react-router-dom'
 
-const ContactForm = () => {
+const ContactForm = ({ match }) => {
     const contactContext = useContext(ContactContext)
 
+    const { addContact, updateContact, current, deleteContact, clearCurrent } = contactContext
+
+    useEffect(() => {
+        if (current !== null) {
+            setContact(current)
+        } else {
+            setContact({
+                name: '',
+                email: '',
+                phone: '',
+                img: '',
+                type: 'personal'
+            })
+        }
+    }, [contactContext, current])
 
     const [contact, setContact] = useState({
         name: '',
@@ -13,7 +28,7 @@ const ContactForm = () => {
         img: '',
         type: 'personal'
     })
-    const [fireRedirect, setRedirect] = useState(false)
+    const [fireRedirect, setFireRedirect] = useState(false)
 
     const { name, email, phone, img, type } = contact
 
@@ -22,31 +37,48 @@ const ContactForm = () => {
         setContact({ ...contact, [name]: value })
     }
 
+    const onCancel = () => {
+        clearCurrent()
+        setFireRedirect(true)
+    }
+
+    const onDelete = () => {
+        console.log("delete", typeof match.params.id)
+        deleteContact(match.params.id)
+        clearCurrent()
+        setFireRedirect(true)
+    }
+    
     const onSubmit = (e) => {
         e.preventDefault()
-        if (contact.img == '') {
-            contactContext.addContact({
-                ...contact,
-                img: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'
+        if (current === null) {
+            if (contact.img == '') {
+                addContact({
+                    ...contact,
+                    img: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'
+                })
+            } else {
+                addContact(contact)
+            }
+            setContact({
+                name: '',
+                email: '',
+                phone: '',
+                img: '',
+                type: 'personal'
             })
         } else {
-            contactContext.addContact(contact)
+            updateContact(contact)
         }
-        setContact({
-            name: '',
-            email: '',
-            phone: '',
-            img: '',
-            type: 'personal'
-        })
-        setRedirect(true)
+        clearCurrent()
+        setFireRedirect(true)
     }
 
     const submitDisabled = (contact.name.length > 0 && contact.email.length > 0 && (contact.phone.length > 0 && contact.phone.match("[0-9\-\.\+]+"))) ? false : true
 
     return (
         <form onSubmit={onSubmit} className="add-contact-form">
-            <h2>Add Contact</h2>
+            <h2>{current ? "Edit Contact" : "Add Contact"}</h2>
             <div className="form-group">
                 <label htmlFor="name" className="control-label required">Name</label>
                 <input
@@ -111,10 +143,24 @@ const ContactForm = () => {
                 </div>
             </div>
             <div className="center">
-                <input className="btn btn-success" type='submit' value="SUBMIT" disabled={submitDisabled} />
-                {fireRedirect && (
-                    <Redirect to="/" />
-                )}
+                {
+                    current ?
+                        <div className="form-buttons">
+                            <button type="button" className="btn btn-danger" onClick={onDelete}><i className="fal fa-trash-alt" /> DELETE</button>
+                            <button type="button" className="btn" onClick={onCancel}><i className="fal fa-times-circle" /> CANCEL</button>
+                            <button className="btn btn-success"><i className="fal fa-pen" /> SAVE</button>
+                            {fireRedirect && (
+                                <Redirect to="/" />
+                            )}
+                        </div>
+                        :
+                        <Fragment>
+                            <input className="btn btn-success" type="submit" value="SUBMIT" disabled={submitDisabled} />
+                            {fireRedirect && (
+                                <Redirect to="/" />
+                            )}
+                        </Fragment>
+                }
             </div>
         </form>
     )

@@ -1,6 +1,7 @@
 import { Fragment, useContext, useState } from 'react'
 import PropTypes from 'prop-types'
 
+import { Link } from 'react-router-dom'
 import ContactContext from '../../../context/contact/contactContext'
 
 const ContactItem = ({ contact }) => {
@@ -26,7 +27,7 @@ const ContactItem = ({ contact }) => {
     }
 
     const onDelete = () => {
-        console.log("delete")
+        console.log("delete", typeof id)
         deleteContact(id)
         clearCurrent()
     }
@@ -75,7 +76,11 @@ const ContactItem = ({ contact }) => {
                         }
                     </ul>
                     <p>
-                        {
+                        <Fragment>
+                            <button className="btn btn-danger" onClick={onDelete}><i className="fal fa-trash-alt" /> DELETE</button>
+                            <Link to={`/edit-contact/${id}`} className="btn btn-success" onClick={onEdit}><i className="fal fa-pen" /> EDIT</Link>
+                        </Fragment>
+                        {/* {
                             edit
                                 ?
                                 (
@@ -85,8 +90,13 @@ const ContactItem = ({ contact }) => {
                                     </Fragment>
                                 )
                                 :
-                                <button className="btn btn-success" onClick={onEdit}><i className="fal fa-pen" /> EDIT</button>
-                        }
+                                <Fragment>
+                                    <button className="btn btn-success" onClick={onEdit}><i className="fal fa-pen" /> EDIT</button>
+                                    {fireRedirect && (
+                                        <Redirect to={`/edit-contact/${id}`} />)
+                                    }
+                                </Fragment>
+                        } */}
                     </p>
                 </div>
             }
