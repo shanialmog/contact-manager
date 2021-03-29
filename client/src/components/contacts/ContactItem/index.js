@@ -5,7 +5,7 @@ import ContactContext from '../../../context/contact/contactContext'
 
 const ContactItem = ({ contact }) => {
     const contactContext = useContext(ContactContext)
-    const { deleteContact } = contactContext
+    const { deleteContact, setCurrent, clearCurrent } = contactContext
 
     const [isOpen, setIsOpen] = useState(false)
     const [edit, setEdit] = useState(false)
@@ -16,17 +16,19 @@ const ContactItem = ({ contact }) => {
         setIsOpen(!isOpen)
     }
 
-    const isEdit = () => {
+    const onEdit = () => {
+        setCurrent(contact)
         setEdit(true)
     }
 
-    const isCancel = () => {
+    const onCancel = () => {
         setEdit(false)
     }
 
     const onDelete = () => {
         console.log("delete")
         deleteContact(id)
+        clearCurrent()
     }
 
     return (
@@ -79,11 +81,11 @@ const ContactItem = ({ contact }) => {
                                 (
                                     <Fragment>
                                         <button className="btn btn-danger" onClick={onDelete}><i className="fal fa-trash-alt" /> DELETE</button>
-                                        <button className="btn" onClick={isCancel}><i className="fal fa-times-circle" /> CANCEL</button>
+                                        <button className="btn" onClick={onCancel}><i className="fal fa-times-circle" /> CANCEL</button>
                                     </Fragment>
                                 )
                                 :
-                                <button className="btn btn-success" onClick={isEdit}><i className="fal fa-pen" /> EDIT</button>
+                                <button className="btn btn-success" onClick={onEdit}><i className="fal fa-pen" /> EDIT</button>
                         }
                     </p>
                 </div>
