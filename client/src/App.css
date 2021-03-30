@@ -351,6 +351,22 @@ input[type="radio"]:last-child{
   font-weight: 300;
 }
 
+/* Animation */
+.item-enter {
+  opacity: 0;
+}
+.item-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+.item-exit {
+  opacity: 1;
+}
+.item-exit-active {
+  opacity: 0;
+  transition: opacity 500ms ease-in;
+}
+
 /* .App {
   text-align: center;
 }
