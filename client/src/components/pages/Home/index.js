@@ -1,13 +1,17 @@
-import Contacts from '../../contacts/Contacts'
+import { Fragment } from 'react'
 import { Link } from 'react-router-dom'
+
+import Contacts from '../../contacts/Contacts'
+import ContactFilter from '../../contacts/ContactFilter'
 
 const Home = () => {
     return (
         // <div className="grid-2">
-        <div>
-            <div>
+        <div className="home-wrapper">
+            <Fragment>
+                <ContactFilter />
                 <Contacts />
-            </div>
+            </Fragment>
             <div >
                 <Link to="/add-contact" className="add-contact-btn btn"><i className="fal fa-plus" /> ADD CONTACT</Link>
             </div>
