@@ -20,30 +20,32 @@ const Register = () => {
         console.log("register submit")
     }
 
+    const submitDisabled = (name.length > 0 && email.length > 0 && password.length > 0 && password2.length > 0 && password === password2) ? false : true
+
     return (
         <Fragment>
             <form onSubmit={onSubmit} className="form-container">
-            <h2>
-                Account <span className="text-form">Register</span>
-            </h2>
+                <h2>
+                    Account <span className="text-form">Register</span>
+                </h2>
                 <div className="form-group">
-                    <label htmlFor="name" className="control-label">Name</label>
+                    <label htmlFor="name" className="control-label required" >Name</label>
                     <input type="text" name="name" value={name} onChange={onChange} />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="email" className="control-label">Email</label>
+                    <label htmlFor="email" className="control-label required" >Email</label>
                     <input type="email" name="email" value={email} onChange={onChange} />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="password" className="control-label">Password</label>
+                    <label htmlFor="password" className="control-label required" >Password</label>
                     <input type="password" name="password" value={password} onChange={onChange} />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="password2" className="control-label">Confirm Password</label>
+                    <label htmlFor="password2" className="control-label required" >Confirm Password</label>
                     <input type="password" name="password2" value={password2} onChange={onChange} />
                 </div>
                 <div className="center">
-                <button type="submit" className="btn btn-success">REGISTER</button>
+                <input className="btn btn-success" type="submit" value="REGISTER" disabled={submitDisabled} />
                 </div>
             </form>
         </Fragment>
