@@ -14,6 +14,7 @@
   --info-color: #feea88;
   --success-color: #1c54e2a6;
   --badge-color: #874091;
+  --form-title-color: #405891;
   }
 
 * {
@@ -246,7 +247,7 @@ input[type=submit]:disabled {
   cursor: initial;
 }
 
-.add-contact-form {
+.form-container {
   display: flex;
   flex-direction: column;
   border-radius: 3px;
@@ -258,7 +259,7 @@ input[type=submit]:disabled {
   justify-content: space-between;
 }
 
-.add-contact-form h2 {
+.form-container h2 {
   text-align: center;
 }
 
@@ -278,7 +279,7 @@ input[type=submit]:disabled {
   font-family: inherit;
 }
 
-input[type=text]:focus, input[type=email]:focus, input[type=tel]:focus, input[type=url]:focus {
+input[type=text]:focus, input[type=email]:focus, input[type=tel]:focus, input[type=url]:focus, input[type=password]:focus {
   border-bottom: 1px solid var(--dark-color);
 }
 
@@ -365,6 +366,10 @@ input[type="radio"]:last-child{
 .item-exit-active {
   opacity: 0;
   transition: opacity 500ms ease-in;
+}
+
+.text-form {
+  color: var(--form-title-color)
 }
 
 /* .App {

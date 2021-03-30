@@ -77,7 +77,7 @@ const ContactForm = ({ match }) => {
     const submitDisabled = (contact.name.length > 0 && contact.email.length > 0 && (contact.phone.length > 0 && contact.phone.match("[0-9\-\.\+]+"))) ? false : true
 
     return (
-        <form onSubmit={onSubmit} className="add-contact-form">
+        <form onSubmit={onSubmit} className="form-container">
             <h2>{current ? "Edit Contact" : "Add Contact"}</h2>
             <div className="form-group">
                 <label htmlFor="name" className="control-label required">Name</label>

@@ -6,6 +6,7 @@ import AuthState from './context/auth/AuthState'
 import Navbar from './components/layout/NavBar'
 import Home from './components/pages/Home'
 import About from './components/pages/About'
+import Register from './components/auth/Register'
 import ContactForm from './components/contacts/ContactForm'
 
 const App = () => {
@@ -18,9 +19,10 @@ const App = () => {
             <div className="container">
               <Switch>
                 <Route exact path='/' component={Home} />
+                <Route exact path='/about' component={About} />
+                <Route exact path='/register' component={Register} />
                 <Route exact path='/add-contact' component={ContactForm} />
                 <Route exact path='/edit-contact/:id' component={ContactForm} />
-                <Route exact path='/about' component={About} />
               </Switch>
             </div>
           </Fragment>

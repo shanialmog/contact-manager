@@ -1,5 +1,5 @@
 import { useReducer } from 'react'
-import AuthContext from './authContext'
+import AuthContext from '../auth/authContext'
 import {
     REGISTER_SUCCESS,
     REGISTER_FAIL,
@@ -45,7 +45,7 @@ const AuthState = (props) => {
                 error: state.error
             }}
         >
-            {Props.children}
+            {props.children}
         </AuthContext.Provider>
     )
 }
