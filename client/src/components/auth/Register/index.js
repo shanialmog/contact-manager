@@ -1,8 +1,11 @@
-import e from 'express'
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment, useContext, useState } from 'react'
 import AlertContext from '../../../context/alert/alertContext'
+import AuthContext from '../../../context/auth/authContext'
 
 const Register = () => {
+    const authContext = useContext(AuthContext)
+
+    const { register } = authContext
 
     const [user, setUser] = useState({
         name: '',
@@ -18,68 +21,32 @@ const Register = () => {
 
     const { name, email, password, password2 } = user
 
-    // useEffect(() => {
-    //     console.log("useeffect: name")
-    //     setNameError('')
-    //     formValidation("name")
-    // }, [user.name])
-
-    // useEffect(() => {
-    //     console.log("useeffect: email")
-    //     setEmailError('')
-    //     formValidation("email")
-    // }, [user.email])
-
-    // useEffect(() => {
-    //     console.log("useeffect: password")
-    //     setPasswordError('')
-    //     formValidation("password")
-    // }, [user.password])
-
-    // useEffect(() => {
-    //     console.log("useeffect: password2")
-    //     setPassword2Error('')
-    //     formValidation("password2")
-    // }, [user.password2])
-
     const onChange = (e) => {
-        clearFormErrors()
         setUser((prevState) => {
-            // const { name1: name, value2: value } = e.target
             const newUser = { ...prevState, [e.target.name]: e.target.value };
             switch (e.target.name) {
                 case "name":
-                    setNameError('')
                     formValidation("name", newUser)
                     break
                 case "email":
-                    setEmailError('')
                     formValidation("email", newUser)
                     break
                 case "password":
-                    setPasswordError('')
                     formValidation("password", newUser)
                     break
                 case "password2":
-                    setPassword2Error('')
                     formValidation("password2", newUser)
+                    break
+                default:
+                    throw new Error("Unknown field: " + e.target.name)
             }
             return { ...prevState, [e.target.name]: e.target.value }
         })
-
     }
 
-    // if (password.length > 0 && password2.length > 0) {
-    //     if (password !== password2) {
-    //         setAlert("The passwords do not match", "info")
-    //     }
-    // }
-
     const formValidation = (checkInput, newUser) => {
-        console.log("formValidation")
         switch (checkInput) {
             case "name":
-                console.log("name", newUser.name, newUser.name.length)
                 if (newUser.name.length <= 2) {
                     setNameError("Username must be at least 3 characters")
                 } else {
@@ -87,7 +54,6 @@ const Register = () => {
                 }
                 break
             case "email":
-                console.log("email", newUser.email, newUser.email.length)
                 if (!newUser.email.includes('@')) {
                     setEmailError("Enter a valid email \"example@example.com\"")
                 } else {
@@ -95,7 +61,6 @@ const Register = () => {
                 }
                 break
             case "password":
-                console.log("password", newUser.password, newUser.password.length)
                 if (newUser.password.length <= 7) {
                     setPasswordError("Password must be at least 8 characters")
                 } else {
@@ -103,13 +68,14 @@ const Register = () => {
                 }
                 break
             case "password2":
-                console.log("password2", newUser.password2, newUser.password2.length)
-                if (newUser.password2 !== newUser.passsword) {
+                if (newUser.password !== newUser.password2) {
                     setPassword2Error("Passwords do not match")
                 } else {
                     setPassword2Error('')
                 }
                 break
+            default:
+                return
         }
     }
 
@@ -125,8 +91,12 @@ const Register = () => {
     const onSubmit = (e) => {
         e.preventDefault()
         clearFormErrors()
+        register({
+            name,
+            email,
+            password
+        })
     }
-    const nameError2 = (user.name.length <= 2) ? "Username must be at least 3 characters" : ""
 
     return (
         <Fragment>
@@ -146,7 +116,6 @@ const Register = () => {
                     {
                         (nameError.length > 0) &&
                         <div className="alert alert-error">
-                            {console.log(nameError)}
                             <i className='fad fa-info-circle' /> {nameError}
                         </div>
                     }
