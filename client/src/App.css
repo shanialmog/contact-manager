@@ -374,6 +374,18 @@ input[type="radio"]:last-child{
   color: #c44242;
 }
 
+.alert-block {
+  padding: 0.5rem;
+  margin: 0.5em 0;
+  opacity: 0.9;
+  background: var(--light-color);
+  color: #272727;
+  letter-spacing: 0.01em;
+  font-size: 0.8rem;
+  border-radius: 3px;
+  text-align: center;
+}
+
 /* Animation */
 .item-enter {
   opacity: 0;

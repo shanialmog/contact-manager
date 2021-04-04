@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken')
 const { check, validationResult } = require('express-validator')
 
 const User = require('../models/User')
+const { json } = require('express')
 
 // @route   POST api/users
 // @desc    Register a user
@@ -26,7 +27,7 @@ router.post('/', [
     try {
         let user = await User.findOne({ email })
         if (user) {
-            return res(400).json({ msg: 'User already exists' })
+            return res.status(400).json({ msg: 'User already exists' })
         }
         user = new User({
             name,

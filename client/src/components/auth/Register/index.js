@@ -1,11 +1,22 @@
-import { Fragment, useContext, useState } from 'react'
+import { Fragment, useState, useContext, useEffect } from 'react'
 import AlertContext from '../../../context/alert/alertContext'
 import AuthContext from '../../../context/auth/authContext'
+import Alerts from '../../layout/Alerts'
+
 
 const Register = () => {
     const authContext = useContext(AuthContext)
+    const alertContext = useContext(AlertContext)
 
-    const { register } = authContext
+    const { setAlert } = alertContext
+    const { register, error, clearErrors } = authContext
+
+    useEffect(() => {
+        if (error === 'User already exists') {
+            setAlert(error, 'danger')
+            clearErrors()
+        }
+    }, [error])
 
     const [user, setUser] = useState({
         name: '',
@@ -169,6 +180,7 @@ const Register = () => {
                         </div>
                     }
                 </div>
+                <Alerts />
                 <div className="center">
                     <input className="btn btn-success" type="submit" value="REGISTER" disabled={submitDisabled} />
                 </div>
