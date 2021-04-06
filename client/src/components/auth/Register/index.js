@@ -74,6 +74,8 @@ const Register = () => {
             case "password":
                 if (newUser.password.length <= 7) {
                     setPasswordError("Password must be at least 8 characters")
+                } else if (newUser.password2.length > 0 && newUser.password !== newUser.password2) {
+                    setPasswordError("Passwords do not match")
                 } else {
                     setPasswordError('')
                 }
