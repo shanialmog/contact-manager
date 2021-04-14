@@ -8,7 +8,7 @@ const Register = () => {
     const authContext = useContext(AuthContext)
     const alertContext = useContext(AlertContext)
 
-    const { setAlert } = alertContext
+    const { setAlert, removeAlert } = alertContext
     const { register, error, clearErrors } = authContext
 
     useEffect(() => {
@@ -17,6 +17,12 @@ const Register = () => {
             clearErrors()
         }
     }, [error])
+
+    useEffect(() => {
+        if (error === null) {
+            removeAlert()
+        }
+    }, [])
 
     const [user, setUser] = useState({
         name: '',
@@ -65,8 +71,9 @@ const Register = () => {
                 }
                 break
             case "email":
+                removeAlert()
                 if (!newUser.email.includes('@')) {
-                    setEmailError("Enter a valid email \"example@example.com\"")
+                    setEmailError("Enter a valid email")
                 } else {
                     setEmailError('')
                 }
@@ -103,6 +110,7 @@ const Register = () => {
 
     const onSubmit = (e) => {
         e.preventDefault()
+        removeAlert()
         clearFormErrors()
         register({
             name,
@@ -181,8 +189,8 @@ const Register = () => {
                             <i className='fad fa-info-circle' /> {password2Error}
                         </div>
                     }
+                    <Alerts />
                 </div>
-                <Alerts />
                 <div className="center">
                     <input className="btn btn-success" type="submit" value="REGISTER" disabled={submitDisabled} />
                 </div>

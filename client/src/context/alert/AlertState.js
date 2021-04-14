@@ -19,7 +19,7 @@ const AlertState = (props) => {
     }
 
     // Remove Alert
-    const removeAlert = (msg, type, id) => {
+    const removeAlert = ( type, id) => {
         dispatch({ type: REMOVE_ALERT, payload: id })
     }
 
