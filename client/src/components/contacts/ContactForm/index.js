@@ -2,15 +2,28 @@ import { useContext, useState, useEffect, Fragment } from 'react'
 import ContactContext from '../../../context/contact/contactContext'
 import { Redirect } from 'react-router-dom'
 
-const ContactForm = ({ match }) => {
+const ContactForm = ({ match, location }) => {
     const contactContext = useContext(ContactContext)
 
     const { addContact, updateContact, current, deleteContact, clearCurrent } = contactContext
 
+    // useEffect(() => {
+    //     if (location.pathname == '/add-contact') {
+    //         clearCurrent()
+    //         setContact({
+    //             name: '',
+    //             email: '',
+    //             phone: '',
+    //             img: '',
+    //             type: 'personal'
+    //         })
+    //         console.log(location.pathname)
+    //     }
+    //     }, [])
+
     useEffect(() => {
-        if (current !== null) {
-            setContact(current)
-        } else {
+        if (location.pathname == '/add-contact') {
+            clearCurrent()
             setContact({
                 name: '',
                 email: '',
@@ -18,8 +31,24 @@ const ContactForm = ({ match }) => {
                 img: '',
                 type: 'personal'
             })
+        } else if (current !== null) {
+            setContact(current)
         }
-    }, [contactContext, current])
+    }, [current])
+
+    // useEffect(() => {
+    //     if (current !== null) {
+    //         setContact(current)
+    //     } else {
+    //         setContact({
+    //             name: '',
+    //             email: '',
+    //             phone: '',
+    //             img: '',
+    //             type: 'personal'
+    //         })
+    //     }
+    // }, [contactContext, current])
 
     const [contact, setContact] = useState({
         name: '',
@@ -48,7 +77,7 @@ const ContactForm = ({ match }) => {
         clearCurrent()
         setFireRedirect(true)
     }
-    
+
     const onSubmit = (e) => {
         e.preventDefault()
         if (current === null) {
