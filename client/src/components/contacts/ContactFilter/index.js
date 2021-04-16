@@ -12,7 +12,9 @@ const ContactFilter = () => {
         if (filtered === null) {
             text.current.value = ""
         }
-    })
+        return clearFilter()
+        // eslint-disable-next-line
+    }, [])
 
     const onChange = (e) => {
         if (text.current.value !== '') {
@@ -21,7 +23,6 @@ const ContactFilter = () => {
             clearFilter()
         }
     }
-
     return (
         <form>
             <label htmlFor="filter" className="control-label">Search Contacts </label>
