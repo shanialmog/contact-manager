@@ -7,22 +7,8 @@ const ContactForm = ({ match, location }) => {
 
     const { addContact, updateContact, current, deleteContact, clearCurrent } = contactContext
 
-    // useEffect(() => {
-    //     if (location.pathname == '/add-contact') {
-    //         clearCurrent()
-    //         setContact({
-    //             name: '',
-    //             email: '',
-    //             phone: '',
-    //             img: '',
-    //             type: 'personal'
-    //         })
-    //         console.log(location.pathname)
-    //     }
-    //     }, [])
-
     useEffect(() => {
-        if (location.pathname == '/add-contact') {
+        if (location.pathname === '/add-contact') {
             clearCurrent()
             setContact({
                 name: '',
@@ -35,20 +21,6 @@ const ContactForm = ({ match, location }) => {
             setContact(current)
         }
     }, [current])
-
-    // useEffect(() => {
-    //     if (current !== null) {
-    //         setContact(current)
-    //     } else {
-    //         setContact({
-    //             name: '',
-    //             email: '',
-    //             phone: '',
-    //             img: '',
-    //             type: 'personal'
-    //         })
-    //     }
-    // }, [contactContext, current])
 
     const [contact, setContact] = useState({
         name: '',
