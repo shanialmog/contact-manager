@@ -10,7 +10,6 @@ import About from './components/pages/About'
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
 import ContactForm from './components/contacts/ContactForm'
-import Alerts from './components/layout/Alerts'
 
 const App = () => {
   return (
