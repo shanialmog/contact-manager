@@ -24,7 +24,7 @@ const Login = () => {
         <Fragment>
             <form onSubmit={onSubmit} className="form-container form-login">
                 <h2>
-                    Account <span className="text-form">Login</span>
+                    Account Login
                 </h2>
                 <div className="form-group">
                     <label htmlFor="email" className="control-label required" >Email</label>

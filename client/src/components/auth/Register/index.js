@@ -4,26 +4,33 @@ import AuthContext from '../../../context/auth/authContext'
 import Alerts from '../../layout/Alerts'
 
 
-const Register = () => {
+const Register = (props) => {
     const authContext = useContext(AuthContext)
     const alertContext = useContext(AlertContext)
 
     const { setAlert, removeAlert } = alertContext
-    const { register, error, clearErrors } = authContext
+    const { register, error, clearErrors, isAuthenticated } = authContext
 
+    useEffect(() => {
+        if (isAuthenticated) {
+            props.history.push('/')
+        }
+    }, [isAuthenticated, props.history])
+    
     useEffect(() => {
         if (error === 'User already exists') {
             setAlert(error, 'danger')
             clearErrors()
         }
+        // eslint-disable-next-line
     }, [error])
-
+    
     useEffect(() => {
         if (error === null) {
             removeAlert()
         }
     }, [])
-
+    
     const [user, setUser] = useState({
         name: '',
         email: '',
@@ -34,10 +41,10 @@ const Register = () => {
     const [emailError, setEmailError] = useState('')
     const [passwordError, setPasswordError] = useState('')
     const [password2Error, setPassword2Error] = useState('')
-
+    
 
     const { name, email, password, password2 } = user
-
+    
     const onChange = (e) => {
         setUser((prevState) => {
             const newUser = { ...prevState, [e.target.name]: e.target.value };
@@ -45,22 +52,22 @@ const Register = () => {
                 case "name":
                     formValidation("name", newUser)
                     break
-                case "email":
-                    formValidation("email", newUser)
-                    break
-                case "password":
-                    formValidation("password", newUser)
-                    break
+                    case "email":
+                        formValidation("email", newUser)
+                        break
+                        case "password":
+                            formValidation("password", newUser)
+                            break
                 case "password2":
                     formValidation("password2", newUser)
                     break
-                default:
-                    throw new Error("Unknown field: " + e.target.name)
-            }
-            return { ...prevState, [e.target.name]: e.target.value }
+                    default:
+                        throw new Error("Unknown field: " + e.target.name)
+                    }
+                    return { ...prevState, [e.target.name]: e.target.value }
         })
     }
-
+    
     const formValidation = (checkInput, newUser) => {
         switch (checkInput) {
             case "name":
@@ -70,24 +77,24 @@ const Register = () => {
                     setNameError('')
                 }
                 break
-            case "email":
-                removeAlert()
-                if (!newUser.email.includes('@')) {
-                    setEmailError("Enter a valid email")
-                } else {
-                    setEmailError('')
-                }
-                break
-            case "password":
-                if (newUser.password.length <= 7) {
-                    setPasswordError("Password must be at least 8 characters")
+                case "email":
+                    // removeAlert()
+                    if (!newUser.email.includes('@')) {
+                        setEmailError("Enter a valid email")
+                    } else {
+                        setEmailError('')
+                    }
+                    break
+                    case "password":
+                        if (newUser.password.length <= 7) {
+                            setPasswordError("Password must be at least 8 characters")
                 } else if (newUser.password2.length > 0 && newUser.password !== newUser.password2) {
                     setPasswordError("Passwords do not match")
                 } else {
                     setPasswordError('')
                 }
                 break
-            case "password2":
+                case "password2":
                 if (newUser.password !== newUser.password2) {
                     setPassword2Error("Passwords do not match")
                 } else {
@@ -96,9 +103,9 @@ const Register = () => {
                 break
             default:
                 return
-        }
+            }
     }
-
+    
     const clearFormErrors = () => {
         setNameError('')
         setEmailError('')
@@ -107,7 +114,7 @@ const Register = () => {
     }
 
     const submitDisabled = (name.length > 0 && email.length > 0 && password.length > 0 && password2.length > 0 && password === password2) ? false : true
-
+    
     const onSubmit = (e) => {
         e.preventDefault()
         removeAlert()
@@ -118,12 +125,12 @@ const Register = () => {
             password
         })
     }
-
+    
     return (
         <Fragment>
             <form onSubmit={onSubmit} className="form-container">
                 <h2>
-                    Account <span className="text-form">Register</span>
+                    Account Register
                 </h2>
                 <div className="form-group">
                     <label htmlFor="name" className="control-label required" >Name</label>
@@ -133,7 +140,7 @@ const Register = () => {
                         value={name}
                         onChange={onChange}
                         required
-                    />
+                        />
                     {
                         (nameError.length > 0) &&
                         <div className="alert alert-error">
